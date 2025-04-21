@@ -1,37 +1,19 @@
 #include <Arduino.h>
 #include "Ultrasonic.h"
 
-class Ultrasonic
-{
-    int trigPin;
-    int echoPin;
+float get_duration(int trigPin, int echoPin) {
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
 
-public:
-    Ultrasonic(int trigPin = 0, int echoPin= 0)
-    {
-        this->trigPin = trigPin;
-        this->echoPin = echoPin;
-        pinMode(trigPin, OUTPUT);
-        pinMode(echoPin, INPUT);
-    }
-    void setPins(int trigPin, int echoPin)
-    {
-        this->trigPin = trigPin;
-        this->echoPin = echoPin;
-        pinMode(trigPin, OUTPUT);
-        pinMode(echoPin, INPUT);
-    }
-    float getDuration()
-    {
-        digitalWrite(trigPin, LOW);
-        delayMicroseconds(2);
-        digitalWrite(trigPin, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(trigPin, LOW);
-        return pulseIn(echoPin, HIGH);
-    }
-    float getDistance(float speedInMetersPerSecond = 343)
-    {
-        return this->getDuration() * speedInMetersPerSecond / 20000;
-    }
-};
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    return pulseIn(echoPin, HIGH);
+}
+
+float get_distance(int trigPin, int echoPin, float speed = 0.0343) {
+    float duration = get_duration(trigPin, echoPin);
+    return (duration * speed) / 2;
+}
