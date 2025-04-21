@@ -3,6 +3,7 @@ int echoPin = 7;
 int buzz = 8;
 long duration;
 int distance;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(trigPin, OUTPUT);
