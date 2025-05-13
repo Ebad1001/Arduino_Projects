@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "SevenSegment.h"
 
-const int digits[10][7] = {
+const int digits[16][7] = {
     {1, 1, 1, 1, 1, 1, 0}, // 0
     {0, 1, 1, 0, 0, 0, 0}, // 1
     {1, 1, 0, 1, 1, 0, 1}, // 2
