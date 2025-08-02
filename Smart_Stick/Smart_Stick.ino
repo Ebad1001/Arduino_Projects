@@ -1,35 +1,46 @@
-int trigPin = 6;
-int echoPin = 7;
-int buzz = 8;
-long duration;
-int distance;
+// define the component pins
+int trigPin = 2;  // connect the TRIG pin of Ultrasonic sensor at pin 6
+int echoPin = 3;  // connect the ECHO pin of Ultrasonic sensor at pin 7
+                  // connect the VCC pin of Ultrasonic sensor at 5V
+                  // connect the GND pin of Ultrasonic sensor at GND
+int buzz = 13;    // connect the longer pin of buzzer at pin 13 and its shorter pin at GND
 
 void setup() {
-  // put your setup code here, to run once:
+  // set the pin modes to OUTPUT
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  pinMode(buzz, OUTPUT);
+
+  // initialize the buzzer pin as LOW - initially the buzzer is OFF
+  digitalWrite(buzz, LOW);
+
+  // initialize the serial port
   Serial.begin(9600);
-  pinMode(buzz,OUTPUT);
-  digitalWrite(buzz,LOW);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  digitalWrite(trigPin,LOW);
+  // take reading from the Ultrasonic Sensor
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration*0.034/2;
-  delay(50);
-  Serial.print("Distance:");
-  Serial.println(distance);
-  if(distance<20){
+  long duration = pulseIn(echoPin, HIGH);
+  long distance = duration * 0.034 / 2;
+
+  // print sensor readings on Serial monitor
+  Serial.print("\ndistance = ");
+  Serial.print(distance);
+
+  // making decision based on sensor value
+  if (distance < 20) {
+    // if the distance is less than 20 cm, turn on the buzzer
     digitalWrite(buzz, HIGH);
-  }
-  else{
+  } else {
+    // if the distance is more than 20 cm, turn off the buzzer
     digitalWrite(buzz, LOW);
   }
+
+  // delay for smooth performance
   delay(100);
 }
