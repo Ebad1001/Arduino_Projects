@@ -45,13 +45,12 @@ void loop() {
   Serial.print(distance);
 
   // making decision based on sensor value
-  if (distance <= 20) {
-    // if the distance is less than 20 cm, open the gate and wait for 5 secs
-    motor.write(90);
+  if (0 < distance && distance <= 30) {
+    // if the distance is between 0 to 30 cm, open the lid and wait for 5 secs before closing it again.
+    motor.write(openAngle);
     delay(5000);
-  } else {
-    // if the distance is more than 20 cm, close the gate
-    motor.write(0);
+    motor.write(closeAngle);
+
   }
 
   // delay for smooth performance
