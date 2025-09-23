@@ -15,5 +15,5 @@ float get_duration(int trigPin, int echoPin) {
 
 float get_distance(int trigPin, int echoPin, float speed = 0.0343) {
     float duration = get_duration(trigPin, echoPin);
-    return (duration * speed) / 2;
+    return speed * (duration / 2);
 }
