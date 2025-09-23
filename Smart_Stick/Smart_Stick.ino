@@ -1,12 +1,12 @@
 // define the component pins
-int trigPin = 2;  // connect the TRIG pin of Ultrasonic sensor at pin 6
-int echoPin = 3;  // connect the ECHO pin of Ultrasonic sensor at pin 7
+int trigPin = 2;  // connect the TRIG pin of Ultrasonic sensor at pin 2
+int echoPin = 3;  // connect the ECHO pin of Ultrasonic sensor at pin 3
                   // connect the VCC pin of Ultrasonic sensor at 5V
                   // connect the GND pin of Ultrasonic sensor at GND
 int buzz = 13;    // connect the longer pin of buzzer at pin 13 and its shorter pin at GND
 
 void setup() {
-  // set the pin modes to OUTPUT
+  // set the pin modes
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode(buzz, OUTPUT);
