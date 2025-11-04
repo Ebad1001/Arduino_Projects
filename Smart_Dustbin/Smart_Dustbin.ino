@@ -50,7 +50,6 @@ void loop() {
     motor.write(openAngle);
     delay(5000);
     motor.write(closeAngle);
-
   }
 
   // delay for smooth performance
