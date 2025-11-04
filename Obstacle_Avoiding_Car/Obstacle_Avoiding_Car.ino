@@ -1,5 +1,5 @@
-int trigPin = 2;
-int echoPIn = 3;
+int trigPin = 8;
+int echoPin = 9;
 
 int leftA = 10;
 int leftB = 11;
@@ -24,12 +24,6 @@ void turnRight() {
   digitalWrite(rightA, HIGH);
   digitalWrite(rightB, LOW);
 }
-void stop() {
-  digitalWrite(leftA, LOW);
-  digitalWrite(leftB, LOW);
-  digitalWrite(rightA, LOW);
-  digitalWrite(rightB, LOW);
-}
 
 void setup() {
   pinMode(trigPin, OUTPUT);
@@ -39,6 +33,7 @@ void setup() {
   pinMode(leftB, OUTPUT);
   pinMode(rightA, OUTPUT);
   pinMode(rightB, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -50,14 +45,15 @@ void loop() {
 
   float duration = pulseIn(echoPin, HIGH);
   float distance = (duration * 0.0343) / 2;
+  Serial.println(distance);
 
   if (distance < 20) {
     stop();
-    delay(1000);
-    turnRight()
-    delay(1000);
+    delay(100);
+    turnRight();
+    delay(100);
   } else {
-    goForward()
-    delay(1000);
+    goForward();
+    delay(100);
   }
 }
