@@ -33,7 +33,7 @@ void setup() {
 void loop() {
   // take reading from Ultrasonic Sensor
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(10);
+  delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
@@ -41,7 +41,7 @@ void loop() {
   long int distance = duration * (0.0343 / 2);
 
   // print sensor readings on Serial monitor
-  Serial.print("\nDistance = ");
+  Serial.print("\ndistance = ");
   Serial.print(distance);
 
   // making decision based on sensor value

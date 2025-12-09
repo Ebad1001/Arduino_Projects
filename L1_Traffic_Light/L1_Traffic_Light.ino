@@ -4,7 +4,7 @@ int led_ylw = 12;  // connect the anode of ylw LED at pin 12 and its cathode at 
 int led_grn = 13;  // connect the anode of grn LED at pin 13 and its cathode at GND
 
 void setup() {
-  // set the pin modes to OUTPUT
+  // set the pin modes
   pinMode(led_red, OUTPUT);
   pinMode(led_ylw, OUTPUT);
   pinMode(led_grn, OUTPUT);

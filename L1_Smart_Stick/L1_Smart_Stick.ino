@@ -25,8 +25,8 @@ void loop() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  long duration = pulseIn(echoPin, HIGH);
-  long distance = duration * 0.034 / 2;
+  long int duration = pulseIn(echoPin, HIGH);
+  long int distance = duration * (0.0343 / 2);
 
   // print sensor readings on Serial monitor
   Serial.print("\ndistance = ");
@@ -37,7 +37,7 @@ void loop() {
     // if the distance is less than 20 cm, turn on the buzzer
     digitalWrite(buzz, HIGH);
   } else {
-    // if the distance is more than 20 cm, turn off the buzzer
+    // else, turn off the buzzer
     digitalWrite(buzz, LOW);
   }
 

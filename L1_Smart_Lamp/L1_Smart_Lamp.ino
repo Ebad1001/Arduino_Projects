@@ -21,7 +21,8 @@ void loop() {
   int value = digitalRead(LDR);
 
   // print sensor readings on Serial monitor
-  Serial.println(value);
+  Serial.print("\nvalue = ");
+  Serial.print(value);
 
   // making decision based on sensor value
   if (value == 1) {
