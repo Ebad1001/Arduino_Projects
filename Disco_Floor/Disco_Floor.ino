@@ -1,5 +1,5 @@
 int LED_count = 7;
-int pins[7] = { 2, 7, 5, 10, 8, 3, 12 }; // randomize the LED order for random output
+int pins[7] = { 8, 9, 10, 11, 12, 13 }; // randomize the LED order for random output
 
 void setup() {
   // put your setup code here, to run once:
