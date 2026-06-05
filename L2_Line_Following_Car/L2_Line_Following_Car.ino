@@ -1,8 +1,8 @@
 // define the component pins
-const int IR_B = A1;  // connect the DO pin of the first IR sensor at pin A1
+const int IR_A = A0;  // connect the DO pin of the LEFT IR sensor at pin A0
                       // connect its GND pin at GND
                       // connect its VCC pin at 5V
-const int IR_A = A0;  // connect the DO pin of the first IR sensor at pin A1
+const int IR_B = A1;  // connect the DO pin of the RITE IR sensor at pin A1
                       // connect its GND pin at GND
                       // connect its VCC pin at 5V
 // MOTOR DRIVER       // connect the 12V pin of motor driver with the positive terminal of battery
@@ -28,12 +28,12 @@ void setup()
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
-  pinMode(EN_B, OUTPUT);
   pinMode(EN_A, OUTPUT);
+  pinMode(EN_B, OUTPUT);
 
   // set speed
-  analogWrite(EN_RITE, int(50 * percentSpeed));
-  analogWrite(EN_LEFT, int(50 * percentSpeed));
+  analogWrite(EN_A, int(50 * percentSpeed));
+  analogWrite(EN_B, int(50 * percentSpeed));
 
   // initially stop
   digitalWrite(IN1, LOW);
@@ -53,8 +53,8 @@ void loop()
 
   // print sensor readings on Serial monitor
   Serial.print("\nLEFT  = ");
-  Serial.print(A);  
-  Serial.print("\tRIGHT = ");
+  Serial.print(A);
+  Serial.print("\tRITE = ");
   Serial.print(B);
 
   // if left IR detects white floor, left wheel moves forward
