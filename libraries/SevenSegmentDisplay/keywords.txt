@@ -1,0 +1,4 @@
+SevenSegmentDisplay KEYWORD1
+display             KEYWORD2
+dp                  KEYWORD2
+off                 KEYWORD2
