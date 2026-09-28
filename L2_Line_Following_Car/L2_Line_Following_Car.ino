@@ -58,10 +58,17 @@ void loop()
   Serial.print(B);
 
   // if left IR detects white floor, left wheel moves forward
+<<<<<<< HEAD
   digitalWrite(IN4, 1 - A);
   // if right IR detects white floor, right wheel moves forward
   digitalWrite(IN2, 1 - B);
 
+=======
+  digitalWrite(IN4, 1-A);
+  // if right IR detects white floor, right wheel moves forward
+  digitalWrite(IN2, 1-B);
+  
+>>>>>>> a195cf23bd623267b4ec65f11f4335e7ac3e8701
   // delay for smooth performance
   delay(100);
 }
