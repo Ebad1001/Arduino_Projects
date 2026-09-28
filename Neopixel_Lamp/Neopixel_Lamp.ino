@@ -2,8 +2,8 @@
 #include <Adafruit_NeoPixel.h>
 
 // define constants
-const int led_count = 20;       // number of neopixels
-const int max_intensity = 100;  // max R/G/B value for pixels
+const int led_count = 20;      // number of neopixels
+const int max_intensity = 100; // max R/G/B value for pixels
 
 // define the component pins
 int neopixel_pin = 9; // connect the data pin of neopixels at pin 9

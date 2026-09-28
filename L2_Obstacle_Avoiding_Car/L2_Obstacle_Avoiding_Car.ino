@@ -1,19 +1,19 @@
 // define the component pins
-const int trigPin = 8;  // connect the TRIG pin of Ultrasonic sensor at pin 8
-const int echoPin = 9;  // connect the ECHO pin of Ultrasonic sensor at pin 9
-                        // connect the VCC pin of Ultrasonic sensor at 5V
-                        // connect the GND pin of Ultrasonic sensor at GND
+const int trigPin = 8; // connect the TRIG pin of Ultrasonic sensor at pin 8
+const int echoPin = 9; // connect the ECHO pin of Ultrasonic sensor at pin 9
+                       // connect the VCC pin of Ultrasonic sensor at 5V
+                       // connect the GND pin of Ultrasonic sensor at GND
 // MOTOR DRIVER         // connect the 12V pin of motor driver with the positive terminal of battery
-                        // connect the GND pin of motor driver with the negative terminal of battery & with GND pin of Arduino
-                        // connect the 5V pin of motor driver with the Vin pin of Arduino
-                        // connect the OUT4 & OUT3 pins of motor driver with left motor
-                        // connect the OUT2 & OUT1 pins of motor driver with right motor
-const int IN4 = 10;     // connect the IN4 pin of motor driver at pin 10
-const int IN3 = 11;     // connect the IN3 pin of motor driver at pin 11
-const int IN2 = 12;     // connect the IN2 pin of motor driver at pin 12
-const int IN1 = 13;     // connect the IN1 pin of motor driver at pin 13
-const int ENB = 5;      // connect the ENB pin of motor driver at pin 5
-const int ENA = 6;      // connect the ENA pin of motor driver at pin 6
+// connect the GND pin of motor driver with the negative terminal of battery & with GND pin of Arduino
+// connect the 5V pin of motor driver with the Vin pin of Arduino
+// connect the OUT4 & OUT3 pins of motor driver with left motor
+// connect the OUT2 & OUT1 pins of motor driver with right motor
+const int IN4 = 10; // connect the IN4 pin of motor driver at pin 10
+const int IN3 = 11; // connect the IN3 pin of motor driver at pin 11
+const int IN2 = 12; // connect the IN2 pin of motor driver at pin 12
+const int IN1 = 13; // connect the IN1 pin of motor driver at pin 13
+const int ENB = 5;  // connect the ENB pin of motor driver at pin 5
+const int ENA = 6;  // connect the ENA pin of motor driver at pin 6
 
 // direction constants
 const int stop = 0;     // 0 0 0 0
@@ -23,7 +23,7 @@ const int left = 6;     // 0 1 1 0
 const int right = 9;    // 1 0 0 1
 
 // other constants
-const int minClearance = 50; 
+const int minClearance = 50;
 const int maxClearance = 500;
 const float percentSpeed = 2.55;
 const float speedOfSound = 0.0343; // unit = cm per microsec
@@ -62,8 +62,8 @@ void setup()
   pinMode(ENB, OUTPUT);
 
   // set speed (max)
-  analogWrite(ENA, int(60*percentSpeed));
-  analogWrite(ENB, int(80*percentSpeed));
+  analogWrite(ENA, int(60 * percentSpeed));
+  analogWrite(ENB, int(80 * percentSpeed));
 
   // initially stop
   move(stop);
@@ -84,19 +84,19 @@ void loop()
   {
     Serial.print("\tInvalid");
     return; // invalid reading
-}
-else if (minClearance < distance && distance < maxClearance)
-{
+  }
+  else if (minClearance < distance && distance < maxClearance)
+  {
     Serial.print("\tOpen path");
     move(forward, 100);
-}
-else 
-{
+  }
+  else
+  {
     Serial.print("\tObstructed path");
-    move(stop,  500);
+    move(stop, 500);
     move(backward, 1000);
-    move(left,  1000);
+    move(left, 1000);
     move(right, 2000);
-    move(stop,  500);
+    move(stop, 500);
   }
 }

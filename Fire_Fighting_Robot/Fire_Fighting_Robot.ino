@@ -1,20 +1,23 @@
-class Reading {
-    public:
-    int value;
-    bool has_no_flame;
-    bool is_too_close;
-    bool is_close_enough;
-    bool is_too_far;
-    Reading(int value) {
-        this->value = value;
-        this->is_too_close = (this->value < 300);                           //    0 -  300 : too close
-        this->is_close_enough = (300 <= this->value && this->value < 600);  //  300 -  600 : ideal range
-        this->is_too_far = (600 <= this->value && this->value < 1000);      //  600 - 1000 : need to move closer
-        this->has_no_flame = (1000 <= this->value);                         // 1000 - 1023 : no flame
-    }
-    bool is_closer_than(Reading other) {
-      return (this->value) < (other.value);
-    }
+class Reading
+{
+public:
+  int value;
+  bool has_no_flame;
+  bool is_too_close;
+  bool is_close_enough;
+  bool is_too_far;
+  Reading(int value)
+  {
+    this->value = value;
+    this->is_too_close = (this->value < 300);                          //    0 -  300 : too close
+    this->is_close_enough = (300 <= this->value && this->value < 600); //  300 -  600 : ideal range
+    this->is_too_far = (600 <= this->value && this->value < 1000);     //  600 - 1000 : need to move closer
+    this->has_no_flame = (1000 <= this->value);                        // 1000 - 1023 : no flame
+  }
+  bool is_closer_than(Reading other)
+  {
+    return (this->value) < (other.value);
+  }
 };
 
 const int IR_LEFT = A2;
@@ -29,15 +32,15 @@ const int EN_LEFT = 6;
 const int PUMP = 3;
 
 const float percentSpeed = 2.55;
-const int STOP          =  0; // 0 0 0 0
-const int FORWARD       = 10; // 1 0 1 0
-const int BACKWARD      =  5; // 0 1 0 1
-const int IN_PLACE_LEFT =  9; // 1 0 0 1
-const int IN_PLACE_RITE =  6; // 0 1 1 0
-const int FORWARD_LEFT  =  8; // 1 0 0 0
-const int FORWARD_RITE  =  2; // 0 0 1 0
-const int BACKWARD_LEFT =  1; // 0 0 0 1
-const int BACKWARD_RITE =  4; // 0 1 0 0
+const int STOP = 0;          // 0 0 0 0
+const int FORWARD = 10;      // 1 0 1 0
+const int BACKWARD = 5;      // 0 1 0 1
+const int IN_PLACE_LEFT = 9; // 1 0 0 1
+const int IN_PLACE_RITE = 6; // 0 1 1 0
+const int FORWARD_LEFT = 8;  // 1 0 0 0
+const int FORWARD_RITE = 2;  // 0 0 1 0
+const int BACKWARD_LEFT = 1; // 0 0 0 1
+const int BACKWARD_RITE = 4; // 0 1 0 0
 
 void move(int direction, int interval = 0)
 {
@@ -80,9 +83,10 @@ void loop()
   Serial.print("\tRITE = ");
   Serial.print(RITE.value);
 
-  while(LEFT.has_no_flame &&
-        CNTR.has_no_flame &&
-        RITE.has_no_flame) {
+  while (LEFT.has_no_flame &&
+         CNTR.has_no_flame &&
+         RITE.has_no_flame)
+  {
     // there's no flame in the range
     // rotate in place
     Serial.print("\nNo flame detected.");
@@ -94,40 +98,49 @@ void loop()
   }
 
   bool at_safe_distance = true;
-  if (LEFT.is_too_close) {
+  if (LEFT.is_too_close)
+  {
     Serial.print("\nWe're too close (L).");
     move(BACKWARD_LEFT, one_second);
     at_safe_distance = false;
   }
-  if (CNTR.is_too_close) {
+  if (CNTR.is_too_close)
+  {
     Serial.print("\nWe're too close (C).");
     move(BACKWARD, one_second);
     at_safe_distance = false;
   }
-  if (RITE.is_too_close) {
+  if (RITE.is_too_close)
+  {
     Serial.print("\nWe're too close (R).");
     move(BACKWARD_RITE, one_second);
     at_safe_distance = false;
   }
-  if(at_safe_distance) {
+  if (at_safe_distance)
+  {
     bool need_to_move = true;
-    if(CNTR.is_close_enough) {
+    if (CNTR.is_close_enough)
+    {
       need_to_move = false;
       Serial.print("\nShoot the water >>");
       digitalWrite(PUMP, HIGH);
-      delay(3*one_second);
+      delay(3 * one_second);
       digitalWrite(PUMP, LOW);
     }
-    if(need_to_move) {
-      if(LEFT.is_closer_than(CNTR) && LEFT.is_closer_than(RITE)) {
+    if (need_to_move)
+    {
+      if (LEFT.is_closer_than(CNTR) && LEFT.is_closer_than(RITE))
+      {
         Serial.print("\nNeed to move a little LEFT.");
         move(FORWARD_LEFT, one_second);
       }
-      else if(RITE.is_closer_than(CNTR) && RITE.is_closer_than(LEFT)) {
+      else if (RITE.is_closer_than(CNTR) && RITE.is_closer_than(LEFT))
+      {
         Serial.print("\nNeed to move a little RITE.");
         move(FORWARD_RITE, one_second);
       }
-      else {
+      else
+      {
         Serial.print("\nNeed to move a little FORWARD.");
         move(FORWARD, one_second);
       }

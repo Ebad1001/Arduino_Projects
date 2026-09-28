@@ -1,11 +1,12 @@
 // define the component pins
-int trigPin = 2;  // connect the TRIG pin of Ultrasonic sensor at pin 2
-int echoPin = 3;  // connect the ECHO pin of Ultrasonic sensor at pin 3
-                  // connect the VCC pin of Ultrasonic sensor at 5V
-                  // connect the GND pin of Ultrasonic sensor at GND
-int buzz = 13;    // connect the longer pin of buzzer at pin 13 and its shorter pin at GND
+int trigPin = 2; // connect the TRIG pin of Ultrasonic sensor at pin 2
+int echoPin = 3; // connect the ECHO pin of Ultrasonic sensor at pin 3
+                 // connect the VCC pin of Ultrasonic sensor at 5V
+                 // connect the GND pin of Ultrasonic sensor at GND
+int buzz = 13;   // connect the longer pin of buzzer at pin 13 and its shorter pin at GND
 
-void setup() {
+void setup()
+{
   // set the pin modes
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -18,7 +19,8 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
+void loop()
+{
   // take reading from the Ultrasonic Sensor
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -33,10 +35,13 @@ void loop() {
   Serial.print(distance);
 
   // making decision based on sensor value
-  if (distance < 20) {
+  if (distance < 20)
+  {
     // if the distance is less than 20 cm, turn on the buzzer
     digitalWrite(buzz, HIGH);
-  } else {
+  }
+  else
+  {
     // else, turn off the buzzer
     digitalWrite(buzz, LOW);
   }

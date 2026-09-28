@@ -9,7 +9,7 @@ int color = 0;            // 0 = red, 1 = green, 2 = blue
 int neopixel_pin = 9; // connect the data pin of neopixels at pin 9
                       // connect the GND pin of neopixels at GND
                       // connect the 5V pin of neopixels at 5V
-int tilt_sensor = 6;  // connect the DO pin of tilt sensor at pin 6
+int tilt_sensor = 7;  // connect the DO pin of tilt sensor at pin 6
                       // connect the GND pin of tilt sensor at GND
                       // connect the VCC pin of tilt sensor at 5V
 
@@ -38,6 +38,7 @@ void loop()
 {
   // take reading from tilt sensor
   int reading = digitalRead(tilt_sensor);
+  Serial.println(reading);
 
   if (reading == HIGH)
   {
@@ -49,7 +50,7 @@ void loop()
       {
         strip.setPixelColor(i, strip.Color(255, 0, 0));
         strip.show();
-        delay(50);
+        delay(10);
       }
       color = 1;
     }
@@ -59,7 +60,7 @@ void loop()
       {
         strip.setPixelColor(i, strip.Color(0, 255, 0));
         strip.show();
-        delay(50);
+        delay(10);
       }
       color = 2;
     }
@@ -69,12 +70,11 @@ void loop()
       {
         strip.setPixelColor(i, strip.Color(0, 0, 255));
         strip.show();
-        delay(50);
+        delay(10);
       }
       color = 0;
     }
-
-    // delay for smooth performance
-    delay(10);
   }
+  // delay for smooth performance
+  delay(100);
 }

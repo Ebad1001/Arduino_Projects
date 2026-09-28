@@ -119,7 +119,7 @@ void printBoard()
     {
       Serial.print("| ");
       // Serial.print(symbol[board[i][j]]);
-      Serial.print(board[j][i-1]);
+      Serial.print(board[j][i - 1]);
       Serial.print(" ");
     }
     Serial.print("|\n+---+---+---+\n");
